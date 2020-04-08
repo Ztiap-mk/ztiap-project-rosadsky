@@ -12,6 +12,7 @@ window.onload = function () {
 
     const prostredie = new Prostredie(c,ctx);
     const vtak = new Vtak(50,250,ctx);
+    const budova = new Budova(600,20,200,20,ctx);
     loopHry();
 
 
@@ -20,6 +21,8 @@ window.onload = function () {
         ctx.fillRect(0,0,c.width,c.height);
         prostredie.update();
         prostredie.render();
+        budova.update();
+        budova.render();
         vtak.update();
         vtak.render();
         window.requestAnimationFrame(loopHry);

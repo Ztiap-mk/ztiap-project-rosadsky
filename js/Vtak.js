@@ -7,7 +7,6 @@ const Vtak = function (x,y,ctx) {
     this.y =y;
     this.ctx = ctx;
     this.velY = 0;
-    this.funca = 1;
     this.width= 61; //
     this.height = 48; // ROZMERY
     this.vtaky = document.getElementById('vtak1') //61x48
@@ -16,7 +15,7 @@ const Vtak = function (x,y,ctx) {
 
     document.addEventListener('keydown',function (klavesa) {
 
-        if(klavesa.keyCode === 32){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
+        if(klavesa.keyCode === 32 || klavesa.keyCode === 87){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
             skok.velY = -13;
         }
 
