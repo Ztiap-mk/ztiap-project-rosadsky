@@ -1,5 +1,7 @@
 
 
+// Dorobiť animáciu vtáka nech mu lietajú krídla
+
 const Vtak = function (x,y,ctx) {
     this.x =x;
     this.y =y;
