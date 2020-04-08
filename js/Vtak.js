@@ -5,8 +5,9 @@ const Vtak = function (x,y,ctx) {
     this.y =y;
     this.ctx = ctx;
     this.velY = 0;
+    this.funca = 1;
     this.width= 61; //
-    this.height = 48; // ROZMERY TESTO COMMIT
+    this.height = 48; // ROZMERY
     this.vtaky = document.getElementById('vtak1') //61x48
 
     var skok = this; //niesom si istý prečo je toto takto
