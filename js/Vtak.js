@@ -30,8 +30,8 @@ Vtak.prototype.update = function () {
 };
 
 Vtak.prototype.render = function () {
-    let renderX = this.x - this.width/2;
-    let renderY = this.y - this.height/2;
+    let renderX = this.x - this.width;
+    let renderY = this.y - this.height;
 
     this.ctx.drawImage(this.vtaky,renderX,renderY);
 

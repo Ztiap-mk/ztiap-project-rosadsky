@@ -20,7 +20,7 @@ Budova.prototype.render = function () {
 
         this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
         this.ctx.fillStyle = "green";
-        console.log('TEST!')
+        console.log('Generujem budovu !');
 
 };
 
