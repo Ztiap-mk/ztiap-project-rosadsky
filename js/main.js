@@ -1,5 +1,8 @@
 
 
+
+
+
 window.onload = function () {
 
     const c = document.getElementById('canvas');
@@ -13,14 +16,30 @@ window.onload = function () {
     const prostredie = new Prostredie(c,ctx); //c, ctx
     const vtak = new Vtak(242.5,250,ctx); //x,y,ctx
     const budovy = [];
+    const menu = new Menu(200,250,50,50,ctx);
+
+    pozadie();
+
+    function pozadie (){
+        prostredie.update();
+        prostredie.render();
+        menu.update();
+        menu.render();
+        window.requestAnimationFrame(pozadie);
+    };
+
+    document.addEventListener('keydown',function (menuklavesa) {
+
+        if(menuklavesa.keyCode === 27){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
+            pozadie();
+        }
 
 
-
-
+    });
 
     document.addEventListener('keydown',function (klavesa) {
 
-        if(klavesa.keyCode === 86){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
+        if(klavesa.keyCode === 13){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
             loopHry();
 
             setInterval(function () { //Interval na každých 3000 = 3 sekundy.
@@ -33,12 +52,13 @@ window.onload = function () {
         }
 
 
-    })
+    });
 
 
 
     //hlavný loop
     function loopHry() {
+
         ctx.fillRect(0,0,c.width,c.height);
         prostredie.update();
         prostredie.render();
