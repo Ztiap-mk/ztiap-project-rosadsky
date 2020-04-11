@@ -8,13 +8,18 @@ const Prostredie = function (c, ctx) {
     this.pozSpeed = 1.33; // Rýchlosť pozadia
     this.pozWidth = 765;
     this.pozImg = document.getElementById('poz');
+   // this.hudbaPoz = document.getElementById('hudba');
 };
+
+
 
 
 
 //-----------------------GENEROVANIE POZADIA ZA SEBOU ------------------------------//
 
 Prostredie.prototype.update= function () {
+    //this.hudbaPoz.play();
+
     this.pozPos -= this.pozSpeed;
     if(this.pozPos < -this.pozWidth)
         this.pozPos = 0;

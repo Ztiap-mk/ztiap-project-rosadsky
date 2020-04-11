@@ -1,3 +1,7 @@
+//
+// OTÁZKY : Problém smenu nejak zresetovať funciu ?
+//
+//
 
 
 
@@ -6,23 +10,35 @@
 window.onload = function () {
 
     const c = document.getElementById('canvas');
+    const hudbaPoz = document.getElementById('hudba');
 
     c.width = 485; // Šírka canvasu
     c.height = 600; // Výška canvasu
+
     let vyskaPrechodu = 180; //Priestor pre vtáka v px
 
     const ctx = c.getContext('2d');
 
     const prostredie = new Prostredie(c,ctx); //c, ctx
+    const prostrediemenu = new ProstredieMenu(c,ctx); //c, ctx
     const vtak = new Vtak(242.5,250,ctx); //x,y,ctx
     const budovy = [];
     const menu = new Menu(200,250,50,50,ctx);
 
     pozadie();
 
+
+    function hudba() {
+        hudbaPoz.pause();
+        hudbaPoz.currentTime=0;
+    }
+
+
+
+
     function pozadie (){
-        prostredie.update();
-        prostredie.render();
+        prostrediemenu.update();
+        prostrediemenu.render();
         menu.update();
         menu.render();
         window.requestAnimationFrame(pozadie);
@@ -32,6 +48,7 @@ window.onload = function () {
 
         if(menuklavesa.keyCode === 27){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
             pozadie();
+            hudba();
         }
 
 
@@ -41,6 +58,7 @@ window.onload = function () {
 
         if(klavesa.keyCode === 13){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
             loopHry();
+            hudbaPoz.play();
 
             setInterval(function () { //Interval na každých 3000 = 3 sekundy.
                 let budovaSet = generovanieBudov(ctx,c.width,c.height);
@@ -58,7 +76,6 @@ window.onload = function () {
 
     //hlavný loop
     function loopHry() {
-
         ctx.fillRect(0,0,c.width,c.height);
         prostredie.update();
         prostredie.render();
@@ -89,9 +106,6 @@ window.onload = function () {
 
 };
 
-function testovanie() {
-    console.log('Testovanie!');
-}
 
 
 
