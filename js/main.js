@@ -18,61 +18,23 @@ window.onload = function () {
     let vyskaPrechodu = 180; //Priestor pre vtáka v px
 
     const ctx = c.getContext('2d');
-
     const prostredie = new Prostredie(c,ctx); //c, ctx
-    const prostrediemenu = new ProstredieMenu(c,ctx); //c, ctx
     const vtak = new Vtak(242.5,250,ctx); //x,y,ctx
     const budovy = [];
-    const menu = new Menu(200,250,50,50,ctx);
-
-    pozadie();
-
-
-    function hudba() {
-        hudbaPoz.pause();
-        hudbaPoz.currentTime=0;
-    }
 
 
 
 
-    function pozadie (){
-        prostrediemenu.update();
-        prostrediemenu.render();
-        menu.update();
-        menu.render();
-        window.requestAnimationFrame(pozadie);
-    };
+    setInterval(function () { //Interval na každých 3000 = 3 sekundy.
+        let budovaSet = generovanieBudov(ctx,c.width,c.height);
 
-    document.addEventListener('keydown',function (menuklavesa) {
-
-        if(menuklavesa.keyCode === 27){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
-            pozadie();
-            hudba();
-        }
+        budovy.push(budovaSet.top,budovaSet.bottom);
 
 
-    });
-
-    document.addEventListener('keydown',function (klavesa) {
-
-        if(klavesa.keyCode === 13){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
-            loopHry();
-            hudbaPoz.play();
-
-            setInterval(function () { //Interval na každých 3000 = 3 sekundy.
-                let budovaSet = generovanieBudov(ctx,c.width,c.height);
-
-                budovy.push(budovaSet.top,budovaSet.bottom);
+    },1650)
 
 
-            },1650) //sekundy 1,65 sekundy
-        }
-
-
-    });
-
-
+    loopHry();
 
     //hlavný loop
     function loopHry() {
