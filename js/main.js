@@ -10,10 +10,11 @@
 window.onload = function () {
 
     const c = document.getElementById('canvas');
-    const hudbaPoz = document.getElementById('hudba');
+    const hudbaPozadie = document.getElementById('hudba');
 
     c.width = 485; // Šírka canvasu
     c.height = 600; // Výška canvasu
+
 
     let vyskaPrechodu = 180; //Priestor pre vtáka v px
 
@@ -38,17 +39,37 @@ window.onload = function () {
 
     //hlavný loop
     function loopHry() {
-        ctx.fillRect(0,0,c.width,c.height);
-        prostredie.update();
-        prostredie.render();
 
-        budovy.forEach(function (budova) { //pre každý budova objekt sa updatuje aj renderuje horná aj spodná budova
-            budova.update();
-            budova.render();
-        });
+        if (vtak.gameover){
+            koniecHry(ctx, c);
+            hudbaPozadie.pause();
+        } else {
 
-        vtak.update();
-        vtak.render();
+            if(vtak.hudbaPoz){
+                hudbaPozadie.play();
+            }
+
+            if(vtak.hudbaPoz ===false){
+                hudbaPozadie.pause();
+            }
+
+
+
+
+            ctx.fillRect(0,0,c.width,c.height);
+            prostredie.update();
+            prostredie.render();
+
+            budovy.forEach(function (budova) { //pre každý budova objekt sa updatuje aj renderuje horná aj spodná budova
+                budova.update();
+                budova.render();
+            });
+
+            vtak.update();
+            vtak.render();
+        }
+
+
         window.requestAnimationFrame(loopHry);
     }
 
@@ -65,8 +86,14 @@ window.onload = function () {
 
     }
 
-
 };
+
+function koniecHry(ctx, c){
+    ctx.font="50px Helvetica";
+    ctx.textAlign="center";
+    ctx.fillStyle = "red";
+    ctx.fillText("KONIEC HRY :(",c.width/2 , c.height/2);
+}
 
 
 

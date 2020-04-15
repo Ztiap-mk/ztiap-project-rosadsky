@@ -8,8 +8,9 @@ const Prostredie = function (c, ctx) {
     this.pozSpeed = 1.33; // Rýchlosť pozadia
     this.pozWidth = 765;
     this.pozImg = document.getElementById('poz');
-   // this.hudbaPoz = document.getElementById('hudba');
 };
+
+
 
 
 

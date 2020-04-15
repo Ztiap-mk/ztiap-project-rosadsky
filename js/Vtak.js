@@ -10,8 +10,10 @@ const Vtak = function (x,y,ctx) {
     this.width= 61; //
     this.height = 48; // ROZMERY
     this.vtaky = document.getElementById('vtak1') //61x48
+    this.gameover = false;
+    this.hudbaPoz = true;
 
-
+    var stop = this;
     var skok = this; //niesom si istý prečo je toto takto
 
     document.addEventListener('keydown',function (klavesa) {
@@ -20,12 +22,26 @@ const Vtak = function (x,y,ctx) {
             skok.velY = -13;
         }
 
+        if(klavesa.keyCode === 88){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
+            stop.hudbaPoz= false;
+
+        }
+
     })
+
+
+
+
 };
 
 Vtak.prototype.update = function () {
     this.y += this.velY; //
     this.velY += 1; // padanie vtáka
+
+    if(this.y>600){
+        this.gameover = true;
+    }
+
 
 };
 
