@@ -23,7 +23,13 @@ const Vtak = function (x,y,ctx) {
         }
 
         if(klavesa.keyCode === 88){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
-            stop.hudbaPoz= false;
+            if(stop.hudbaPoz){
+                stop.hudbaPoz= false;
+            } else {
+                stop.hudbaPoz = true;
+            }
+
+
 
         }
 

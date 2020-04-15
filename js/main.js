@@ -48,8 +48,7 @@ window.onload = function () {
             if(vtak.hudbaPoz){
                 hudbaPozadie.play();
             }
-
-            if(vtak.hudbaPoz ===false){
+            if(!vtak.hudbaPoz ){
                 hudbaPozadie.pause();
             }
 
