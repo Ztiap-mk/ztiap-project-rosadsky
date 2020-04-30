@@ -23,11 +23,11 @@ Koruna.prototype.render = function () {
 
 
     this.ctx.drawImage(this.koruna,this.xpos,this.ypos,50,this.length);
-    //this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
 
 
 
-    this.ctx.fillStyle = "green";
+
+
 
 };
 

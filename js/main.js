@@ -112,7 +112,7 @@ window.onload = function () {
     }
 
     function gameOverText() {
-        ctx.drawImage(gameovertext,40,50,416,114);
+        ctx.drawImage(gameovertext,40,30,416,114);
 
     }
 
