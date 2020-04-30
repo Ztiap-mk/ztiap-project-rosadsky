@@ -1,0 +1,32 @@
+const Korunka = function (xpos,ypos,length,speed,ctx) {
+
+
+    this.ypos = ypos;
+    this.xpos = xpos;
+
+    this.korunka = document.getElementById('korunka') //61x48
+
+
+    this.length = length;
+    this.ctx=ctx;
+    this.speed = speed;
+};
+
+
+Korunka.prototype.update = function () {
+    this.xpos -= this.speed; //Pohyb "Budov"- fungovanie podobné ako pozadie
+    //rýchlosť posúvania sa zadávame pri volaní funkcie v main.js
+};
+
+Korunka.prototype.render = function () {
+
+
+
+    this.ctx.drawImage(this.korunka,this.xpos,this.ypos,100,this.length);
+    //this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
+
+
+
+
+};
+

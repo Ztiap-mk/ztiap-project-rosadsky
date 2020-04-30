@@ -4,6 +4,8 @@ const Budova = function (xpos,ypos,length,speed,ctx) {
     this.ypos = ypos;
     this.xpos = xpos;
 
+    this.komin = document.getElementById('komin') //61x48
+
 
     this.length = length;
     this.ctx=ctx;
@@ -18,7 +20,13 @@ Budova.prototype.update = function () {
 
 Budova.prototype.render = function () {
 
-        this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
+
+
+        this.ctx.drawImage(this.komin,this.xpos,this.ypos,100,this.length);
+        //this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
+
+
+
         this.ctx.fillStyle = "green";
 
 };

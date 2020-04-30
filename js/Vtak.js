@@ -14,7 +14,7 @@ const Vtak = function (x,y,ctx) {
     this.hudbaPoz = true;
 
     var stop = this;
-    var skok = this; //niesom si istý prečo je toto takto
+    var skok = this;
 
     document.addEventListener('keydown',function (klavesa) {
 
