@@ -4,9 +4,6 @@
 //
 
 
-
-
-
 window.onload = function () {
 
     const c = document.getElementById('canvas');
@@ -18,11 +15,15 @@ window.onload = function () {
 
     let vyskaPrechodu = 180; //Priestor pre vtáka v px
 
+
+
     const ctx = c.getContext('2d');
     const prostredie = new Prostredie(c,ctx); //c, ctx
     const vtak = new Vtak(242.5,250,ctx); //x,y,ctx
     const budovy = [];
     const korunky = [];
+
+    const gameovertext = document.getElementById('gameover');
 
 
 
@@ -50,8 +51,8 @@ window.onload = function () {
     function loopHry() {
 
         if (vtak.gameover){
-            koniecHry(ctx, c);
             hudbaPozadie.pause();
+            gameOverText();
         } else {
 
             if(vtak.hudbaPoz){
@@ -110,14 +111,16 @@ window.onload = function () {
         return rKoruna;
     }
 
+    function gameOverText() {
+        ctx.drawImage(gameovertext,40,50,416,114);
+
+    }
+
+
+
 };
 
-function koniecHry(ctx, c){
-    ctx.font="50px Helvetica";
-    ctx.textAlign="center";
-    ctx.fillStyle = "red";
-    ctx.fillText("KONIEC HRY :(",c.width/2 , c.height/2);
-}
+
 
 
 
