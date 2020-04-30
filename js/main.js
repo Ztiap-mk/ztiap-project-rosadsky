@@ -26,7 +26,7 @@ window.onload = function () {
 
 
 
-    /*
+
     setInterval(function () { //Interval na každých 3000 = 3 sekundy.
         let budovaSet = generovanieBudov(ctx,c.width,c.height);
 
@@ -34,14 +34,14 @@ window.onload = function () {
 
 
     },1650)
-        */
+
 
     setInterval(function () { //Interval na každých 3000 = 3 sekundy.
         let korunaSet = generovanieKoruniek(ctx,c.width,c.height);
 
-        korunky.push(korunaSet.top,korunaSet.bottom);
+        korunky.push(korunaSet);
 
-    },1000)
+    },3300)
 
 
     loopHry();
@@ -68,11 +68,11 @@ window.onload = function () {
             prostredie.update();
             prostredie.render();
 
-            /*budovy.forEach(function (budova) { //pre každý budova objekt sa updatuje aj renderuje horná aj spodná budova
+            budovy.forEach(function (budova) { //pre každý budova objekt sa updatuje aj renderuje horná aj spodná budova
                 budova.update();
                 budova.render();
             });
-            */
+
             korunky.forEach(function (korunka) {
                 korunka.update();
                 korunka.render();
@@ -90,7 +90,7 @@ window.onload = function () {
 
 
     //Vrátime dve hodnoty .top,.bottom
-    /*
+
     function generovanieBudov(ctx) {
         let dlzkaTop = Math.round(Math.random()*200+100); //náhodné číslo okolo 300 //HORNá budova // výška
         let dlzaBottom = 600 - vyskaPrechodu - dlzkaTop;        //spodna budova hodnoty - generácoa
@@ -99,15 +99,15 @@ window.onload = function () {
         rBudova.bottom = new Budova(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
         return rBudova;
     }
-    */
+
 
     function generovanieKoruniek(ctx) {
-        let dlzkaTop = Math.round(Math.random()*200+100); //náhodné číslo okolo 300 //HORNá budova // výška
+        let dlzkaTop = Math.round(Math.random()*333+150); //náhodné číslo okolo 300 //HORNá budova // výška
         let dlzaBottom = 600 - vyskaPrechodu - dlzkaTop;        //spodna budova hodnoty - generácoa
-        let rBudova = { };
-        rBudova.top = new Korunka(600, 0 , dlzkaTop, 3, ctx); // Generovanie vrchnej budovy
-        rBudova.bottom = new Korunka(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
-        return rBudova;
+        let rKoruna = { };
+        rKoruna = new Koruna(780, dlzkaTop , 3, ctx); // Generovanie vrchnej budovy
+        //rKoruna.bottom = new Koruna(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
+        return rKoruna;
     }
 
 };
