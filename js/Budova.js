@@ -10,6 +10,8 @@ const Budova = function (xpos,ypos,length,speed,ctx) {
     this.length = length;
     this.ctx=ctx;
     this.speed = speed;
+
+
 };
 
 

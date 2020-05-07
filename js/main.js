@@ -24,10 +24,7 @@ window.onload = function () {
     const korunky = [];
 
     const gameovertext = document.getElementById('gameover');
-
-
-
-
+    
     setInterval(function () { //Interval na každých 3000 = 3 sekundy.
         let budovaSet = generovanieBudov(ctx,c.width,c.height);
 
@@ -61,9 +58,6 @@ window.onload = function () {
             if(!vtak.hudbaPoz ){
                 hudbaPozadie.pause();
             }
-
-
-
 
             ctx.fillRect(0,0,c.width,c.height);
             prostredie.update();
@@ -104,16 +98,46 @@ window.onload = function () {
 
     function generovanieKoruniek(ctx) {
         let dlzkaTop = Math.round(Math.random()*333+150); //náhodné číslo okolo 300 //HORNá budova // výška
-        let dlzaBottom = 600 - vyskaPrechodu - dlzkaTop;        //spodna budova hodnoty - generácoa
         let rKoruna = { };
         rKoruna = new Koruna(780, dlzkaTop , 3, ctx); // Generovanie vrchnej budovy
-        //rKoruna.bottom = new Koruna(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
         return rKoruna;
     }
 
     function gameOverText() {
         ctx.drawImage(gameovertext,40,30,416,114);
 
+    }
+    
+    function detectCollision(vtak,budovy) {
+
+        let kolizia = false;
+
+        budovy.forEach(function (e) {
+            let highPipe = e.ypos <= 0;
+
+            let x0 = e.xpos;
+            let x1 = e.ypos+100;
+
+            if (highPipe) {
+                let y0 = e.ypos + e.length;
+                let alpha = vtak.x;
+                let beta = vtak.y - vtak.height-2;
+                if(alpha> x0 && alpha < x1 && beta < y0){
+                    kolizia = true;
+                }
+
+
+
+
+
+            }
+
+
+
+
+        });
+
+        return kolizia;
     }
 
 
