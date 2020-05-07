@@ -23,9 +23,9 @@ Budova.prototype.update = function () {
 Budova.prototype.render = function () {
 
 
-
-        this.ctx.drawImage(this.komin,this.xpos,this.ypos,100,this.length);
-        //this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
+        this.ctx.fillStyle = "green";
+        //this.ctx.drawImage(this.komin,this.xpos,this.ypos,100,this.length);
+        this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
 
 
 
