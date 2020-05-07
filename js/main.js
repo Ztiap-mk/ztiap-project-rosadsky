@@ -74,17 +74,18 @@ window.onload = function () {
 
             })
 
-            vtak.update();
+            vtak.update(budovy);
             vtak.render();
 
-            if(detectCollision(vtak,budovy)){
-                alert("LOSE");
-            }
+
 
 
             if (detectCollision(vtak,budovy)) {
                 alert("Koniec");
-                window.location = '/';
+            }
+
+            if (detekciaKorunky(vtak,korunky)) {
+                alert("KORUNKA");
             }
 
 
@@ -100,7 +101,7 @@ window.onload = function () {
 
     function generovanieBudov(ctx) {
         let dlzkaTop = Math.round(Math.random()*200+50); //náhodné číslo okolo 300 //HORNá budova // výška
-        let dlzaBottom = 600 - 300 - dlzkaTop;        //spodna budova hodnoty - generácoa
+                let dlzaBottom = 600 - 175 - dlzkaTop;        //spodna budova hodnoty - generácoa
         let rBudova = { };
         rBudova.top = new Budova(600, 0 , dlzkaTop, 3, ctx); // Generovanie vrchnej budovy
         rBudova.bottom = new Budova(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
@@ -121,26 +122,26 @@ window.onload = function () {
     }
     
     function detectCollision(vtak,budovy) {
-
         for(var i = 0; i < budovy.length; i++ )  {
-
             let e = budovy[i];
 
             let highPipe = e.ypos <=0;
             let x0 = e.xpos,x1 = e.xpos + 100;
-            if(highPipe){
-                let y0 = e.ypos + e.length;
+            if(highPipe){ //Vrchná pipe
+                let y0 = e.ypos + e.length+16;
                 let alpha = vtak.x;
-                let beta = vtak.y - vtak.height/2; //ak tak toto vypmenit za width
+                let beta = vtak.y - vtak.height/2;
                 if(alpha>x0 && alpha < x1 && beta < y0){
                     return  true;
                 }
             }
-            else {
-                let y2 = e.ypos;
-                let a = vtak.y;
+            else { //Spodná  pipe
+                let y2 = e.ypos+40;
+                let a = vtak.x;
                 let b = vtak.y + vtak.height/2;
-                if(a > x0 && a <x1 && b > y2) return true;
+                if(a > x0 && a <x1 && b > y2){
+                    return true;
+                }
             }
 
         }
@@ -148,10 +149,29 @@ window.onload = function () {
         return false;
     }
 
+    function detekciaKorunky(vtak,korunky) {
+        for(var i = 0; i <korunky.length; i++ ) {
+            let e = korunky[i];
+
+            let highPipe = e.ypos <=0;
+            let x0 = e.xpos,x1 = e.xpos + 100;
+            if(highPipe){ //Vrchná pipe
+                let y0 = e.ypos + e.length+16;
+                let alpha = vtak.x;
+                let beta = vtak.y - vtak.height/2;
+                if(alpha>x0 && alpha < x1 && beta < y0){
+                    return  true;
+                }
+            }
+
+
+        }
+    }
+
+
 
 
 };
-
 
 
 

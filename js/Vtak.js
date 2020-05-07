@@ -13,6 +13,8 @@ const Vtak = function (x,y,ctx) {
     this.gameover = false;
     this.hudbaPoz = true;
 
+    this.deadvtak = false;
+
     var stop = this;
     var skok = this;
 
@@ -44,6 +46,7 @@ Vtak.prototype.update = function () {
     this.y += this.velY; //
     this.velY += 1; // padanie vtáka
 
+
     if(this.y>600){
         this.gameover = true;
     }
@@ -63,3 +66,4 @@ Vtak.prototype.render = function () {
     this.ctx.fillText("12", 242, 140);
 
 }
+
