@@ -61,7 +61,6 @@ window.onload = function () {
                 hudbaPozadie.pause();
             }
 
-            ctx.fillRect(0,0,c.width,c.height);
             prostredie.update();
             prostredie.render();
 
@@ -78,6 +77,15 @@ window.onload = function () {
 
             vtak.update(budovy);
             vtak.render();
+
+            ctx.font = "50px Helvetica";
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.fillText(" " + SkoreKorunky, 242.5, 180);
+
+
+
+
 
 
 
@@ -136,11 +144,10 @@ window.onload = function () {
 
     function gameOverText() {
         ctx.drawImage(gameovertext,40,30,416,114);
-
-        this.ctx.font = "30px Helvetica";
-        this.ctx.fillStyle = "purple";
-        this.ctx.textAlign = "center";
-        this.ctx.fillText("Tvoje skóre: %d", 242, 140);
+        ctx.font = "30px Helvetica";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText("Tvoje skóre: " + SkoreKorunky, 242.2, 250);
 
     }
     

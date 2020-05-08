@@ -60,10 +60,6 @@ Vtak.prototype.render = function () {
 
     this.ctx.drawImage(this.vtaky,renderX,renderY);
 
-    this.ctx.font = "30px Helvetica";
-    this.ctx.fillStyle = "purple";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText("12", 242, 140);
 
 }
 
