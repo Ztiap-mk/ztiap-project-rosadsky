@@ -15,7 +15,9 @@ window.onload = function () {
 
     let vyskaPrechodu = 180; //Priestor pre vtáka v px
 
-
+    let SkoreKorunky= 0;
+    let pomocnaScore= 0;
+    let cas = 0;
 
     const ctx = c.getContext('2d');
     const prostredie = new Prostredie(c,ctx); //c, ctx
@@ -80,12 +82,28 @@ window.onload = function () {
 
 
 
+
             if (detectCollision(vtak,budovy)) {
-                alert("Koniec");
+                vtak.gameover = true;
             }
 
             if (detekciaKorunky(vtak,korunky)) {
-                alert("KORUNKA");
+                if (pomocnaScore< 1){
+                    SkoreKorunky++;
+                    console.log(SkoreKorunky);
+                    pomocnaScore++;
+                    cas = 0;
+                }
+
+
+            } else  {
+                cas++;
+                if (cas%100===0){
+                    pomocnaScore = 0;
+                }
+
+
+
             }
 
 
@@ -101,7 +119,7 @@ window.onload = function () {
 
     function generovanieBudov(ctx) {
         let dlzkaTop = Math.round(Math.random()*200+50); //náhodné číslo okolo 300 //HORNá budova // výška
-                let dlzaBottom = 600 - 175 - dlzkaTop;        //spodna budova hodnoty - generácoa
+                let dlzaBottom = 600 - 260 - dlzkaTop;        //spodna budova hodnoty - generácoa
         let rBudova = { };
         rBudova.top = new Budova(600, 0 , dlzkaTop, 3, ctx); // Generovanie vrchnej budovy
         rBudova.bottom = new Budova(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
@@ -119,6 +137,11 @@ window.onload = function () {
     function gameOverText() {
         ctx.drawImage(gameovertext,40,30,416,114);
 
+        this.ctx.font = "30px Helvetica";
+        this.ctx.fillStyle = "purple";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText("Tvoje skóre: %d", 242, 140);
+
     }
     
     function detectCollision(vtak,budovy) {
@@ -126,19 +149,19 @@ window.onload = function () {
             let e = budovy[i];
 
             let highPipe = e.ypos <=0;
-            let x0 = e.xpos,x1 = e.xpos + 100;
+            let x0 = e.xpos, x1 = e.xpos + 100; // pipe lavý roh, pipe pravý roh
             if(highPipe){ //Vrchná pipe
-                let y0 = e.ypos + e.length+16;
-                let alpha = vtak.x;
-                let beta = vtak.y - vtak.height/2;
+                let y0 = e.ypos + e.length+16; //vrch
+                let alpha = vtak.x; //pre kontrolu bokov
+                let beta = vtak.y - vtak.height/2; //pre kontrolu vrchu
                 if(alpha>x0 && alpha < x1 && beta < y0){
                     return  true;
                 }
             }
             else { //Spodná  pipe
-                let y2 = e.ypos+40;
-                let a = vtak.x;
-                let b = vtak.y + vtak.height/2;
+                let y2 = e.ypos+40; // spodok
+                let a = vtak.x; //pre kontrolu bokob
+                let b = vtak.y + vtak.height/2; //
                 if(a > x0 && a <x1 && b > y2){
                     return true;
                 }
@@ -150,21 +173,25 @@ window.onload = function () {
     }
 
     function detekciaKorunky(vtak,korunky) {
-        for(var i = 0; i <korunky.length; i++ ) {
+
+
+        for(var i = 0; i < korunky.length; i++ ) {
             let e = korunky[i];
+            let x0 = e.xpos;
+            let x1 = e.xpos+100;
+            let alpha  = vtak.x;
+            let y = e.ypos;
+            let y1 = e.ypos+100;
+            let beta = vtak.y - vtak.height/2;
 
-            let highPipe = e.ypos <=0;
-            let x0 = e.xpos,x1 = e.xpos + 100;
-            if(highPipe){ //Vrchná pipe
-                let y0 = e.ypos + e.length+16;
-                let alpha = vtak.x;
-                let beta = vtak.y - vtak.height/2;
-                if(alpha>x0 && alpha < x1 && beta < y0){
-                    return  true;
-                }
+
+
+            if( alpha > x0 && alpha < x1 && beta > y && beta < y1 ){
+                    return true;
+
+            } else {
+               // console.log("else");
             }
-
-
         }
     }
 
