@@ -21,7 +21,7 @@ window.onload = function () {
 
     const ctx = c.getContext('2d');
     const prostredie = new Prostredie(c,ctx); //c, ctx
-    const vtak = new Vtak(242.5,250,ctx); //x,y,ctx
+    const vtak = new Vtak(264,250,ctx); //x,y,ctx
     const budovy = [];
     const korunky = [];
 
@@ -80,8 +80,7 @@ window.onload = function () {
 
             ctx.font = "50px Helvetica";
             ctx.fillStyle = "white";
-            ctx.textAlign = "center";
-            ctx.fillText(" " + SkoreKorunky, 242.5, 180);
+            ctx.fillText ( SkoreKorunky, 225, 180);
 
 
 
