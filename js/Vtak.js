@@ -30,10 +30,8 @@ const Vtak = function (x,y,ctx) {
             } else {
                 stop.hudbaPoz = true;
             }
-
-
-
         }
+
 
     })
 

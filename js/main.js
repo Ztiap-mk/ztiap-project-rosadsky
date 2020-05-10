@@ -51,7 +51,7 @@ window.onload = function () {
 
         if (vtak.gameover){
             hudbaPozadie.pause();
-            gameOverText();
+            gameOverText(vtak);
         } else {
 
             if(vtak.hudbaPoz){
@@ -84,12 +84,6 @@ window.onload = function () {
 
 
 
-
-
-
-
-
-
             if (detectCollision(vtak,budovy)) {
                 vtak.gameover = true;
             }
@@ -105,7 +99,7 @@ window.onload = function () {
 
             } else  {
                 cas++;
-                if (cas%100===0){
+                if (cas%5===0){
                     pomocnaScore = 0;
                 }
 
@@ -113,11 +107,11 @@ window.onload = function () {
 
             }
 
-
+            window.requestAnimationFrame(loopHry);
         }
 
 
-        window.requestAnimationFrame(loopHry);
+
     }
 
 
@@ -126,7 +120,7 @@ window.onload = function () {
 
     function generovanieBudov(ctx) {
         let dlzkaTop = Math.round(Math.random()*200+50); //náhodné číslo okolo 300 //HORNá budova // výška
-                let dlzaBottom = 600 - 260 - dlzkaTop;        //spodna budova hodnoty - generácoa
+                let dlzaBottom = 600 - vyskaPrechodu - dlzkaTop;        //spodna budova hodnoty - generácoa
         let rBudova = { };
         rBudova.top = new Budova(600, 0 , dlzkaTop, 3, ctx); // Generovanie vrchnej budovy
         rBudova.bottom = new Budova(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
@@ -141,12 +135,22 @@ window.onload = function () {
         return rKoruna;
     }
 
-    function gameOverText() {
+    function gameOverText(vtak) {
         ctx.drawImage(gameovertext,40,30,416,114);
         ctx.font = "30px Helvetica";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
         ctx.fillText("Tvoje skóre: " + SkoreKorunky, 242.2, 250);
+
+        document.addEventListener('keydown',function (klavesa) {
+
+            if(klavesa.keyCode === 82 ) { //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
+                vtak.gameover = false;
+            }
+
+
+        })
+
 
     }
     
@@ -157,7 +161,7 @@ window.onload = function () {
             let highPipe = e.ypos <=0;
             let x0 = e.xpos, x1 = e.xpos + 100; // pipe lavý roh, pipe pravý roh
             if(highPipe){ //Vrchná pipe
-                let y0 = e.ypos + e.length+16; //vrch
+                let y0 = e.ypos + e.length+23; //vrch
                 let alpha = vtak.x; //pre kontrolu bokov
                 let beta = vtak.y - vtak.height/2; //pre kontrolu vrchu
                 if(alpha>x0 && alpha < x1 && beta < y0){
@@ -165,7 +169,7 @@ window.onload = function () {
                 }
             }
             else { //Spodná  pipe
-                let y2 = e.ypos+40; // spodok
+                let y2 = e.ypos+20; // spodok
                 let a = vtak.x; //pre kontrolu bokob
                 let b = vtak.y + vtak.height/2; //
                 if(a > x0 && a <x1 && b > y2){
@@ -184,7 +188,7 @@ window.onload = function () {
         for(var i = 0; i < korunky.length; i++ ) {
             let e = korunky[i];
             let x0 = e.xpos;
-            let x1 = e.xpos+100;
+            let x1 = e.xpos+50;
             let alpha  = vtak.x;
             let y = e.ypos;
             let y1 = e.ypos+100;
