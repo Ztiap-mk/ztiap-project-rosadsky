@@ -10,6 +10,7 @@ const Vtak = function (x,y,ctx) {
     this.width= 61; //
     this.height = 48; // ROZMERY
     this.vtaky = document.getElementById('vtak1') //61x48
+    this.skokzvuk = document.getElementById('skok');
     this.gameover = false;
     this.hudbaPoz = true;
 
@@ -18,10 +19,16 @@ const Vtak = function (x,y,ctx) {
     var stop = this;
     var skok = this;
 
+
     document.addEventListener('keydown',function (klavesa) {
 
         if(klavesa.keyCode === 32 || klavesa.keyCode === 87){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
             skok.velY = -13;
+            if(stop.hudbaPoz){
+                skok.skokzvuk.play();
+            }
+
+
         }
 
         if(klavesa.keyCode === 88){ //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.

@@ -29,6 +29,7 @@ window.onload = function () {
     const gameovermenu = document.getElementById('gameovermenu');
     const zvukon = document.getElementById('zvukon');
     const zvukoff = document.getElementById('zvukoff');
+    const korunkaskore = document.getElementById('korunkaskore');
     
     setInterval(function () { //Interval na každých 3000 = 3 sekundy.
         let budovaSet = generovanieBudov(ctx,c.width,c.height);
@@ -91,6 +92,10 @@ window.onload = function () {
                     SkoreKorunky++;
                     console.log(SkoreKorunky);
                     pomocnaScore++;
+                    if(vtak.hudbaPoz){
+                        korunkaskore.play();
+                    };
+
                     cas = 0;
                 }
 
