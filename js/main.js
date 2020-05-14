@@ -27,6 +27,8 @@ window.onload = function () {
 
     const gameovertext = document.getElementById('gameover');
     const gameovermenu = document.getElementById('gameovermenu');
+    const zvukon = document.getElementById('zvukon');
+    const zvukoff = document.getElementById('zvukoff');
     
     setInterval(function () { //Interval na každých 3000 = 3 sekundy.
         let budovaSet = generovanieBudov(ctx,c.width,c.height);
@@ -55,12 +57,7 @@ window.onload = function () {
             gameOverText(vtak);
         } else {
 
-            if(vtak.hudbaPoz){
-                hudbaPozadie.play();
-            }
-            if(!vtak.hudbaPoz ){
-                hudbaPozadie.pause();
-            }
+
 
             prostredie.update();
             prostredie.render();
@@ -107,6 +104,18 @@ window.onload = function () {
 
 
             }
+
+            if(vtak.hudbaPoz){
+                ctx.drawImage(zvukon,5,5,35,35);
+                hudbaPozadie.play();
+
+            }
+            if(!vtak.hudbaPoz ){
+                hudbaPozadie.pause();
+                ctx.drawImage(zvukoff,5,5,35,35);
+            }
+
+
 
             window.requestAnimationFrame(loopHry);
         }

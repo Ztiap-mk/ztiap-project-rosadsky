@@ -33,8 +33,7 @@ const Vtak = function (x,y,ctx) {
         }
 
 
-    })
-
+    });
 
 
 
