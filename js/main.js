@@ -26,6 +26,7 @@ window.onload = function () {
     const korunky = [];
 
     const gameovertext = document.getElementById('gameover');
+    const gameovermenu = document.getElementById('gameovermenu');
     
     setInterval(function () { //Interval na každých 3000 = 3 sekundy.
         let budovaSet = generovanieBudov(ctx,c.width,c.height);
@@ -73,7 +74,7 @@ window.onload = function () {
                 korunka.update();
                 korunka.render();
 
-            })
+            });
 
             vtak.update(budovy);
             vtak.render();
@@ -137,17 +138,22 @@ window.onload = function () {
 
     function gameOverText(vtak) {
         ctx.drawImage(gameovertext,40,30,416,114);
+        ctx.drawImage(gameovermenu,150,300,186,140);
         ctx.font = "30px Helvetica";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
         ctx.fillText("Tvoje skóre: " + SkoreKorunky, 242.2, 250);
 
-        document.addEventListener('keydown',function (klavesa) {
-
-            if(klavesa.keyCode === 82 ) { //ovládanie pomocou MEDZERNIKA + treba pridať W alebo myš.
-                vtak.gameover = false;
+        document.addEventListener('click', (event)=>{
+            var rect = canvas.getBoundingClientRect();
+            let x = event.clientX-rect.left;
+            let y = event.clientY - rect.top;
+            if (y>=300 && y<370 && x>150 && x<320){
+                window.location.href="menu.html";
             }
-
+            if (y>=375 && y<445 && x>150 && x<320){
+                window.location.href="index.html";
+            }
 
         })
 
