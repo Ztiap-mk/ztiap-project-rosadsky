@@ -57,7 +57,10 @@ window.onload = function () {
 
         if (vtak.gameover){
             hudbaPozadie.pause();
-            fail.play();
+            if (vtak.hudbaPoz){
+                fail.play();
+            }
+
             gameOverText(vtak);
         } else {
 
