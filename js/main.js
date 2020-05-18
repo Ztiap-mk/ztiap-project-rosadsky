@@ -20,6 +20,8 @@ window.onload = function () {
     let cas = 0;
     let rychlost = 3;
 
+
+
     const ctx = c.getContext('2d');
     const prostredie = new Prostredie(c,ctx); //c, ctx
     const vtak = new Vtak(264,250,ctx); //x,y,ctx
@@ -184,9 +186,6 @@ window.onload = function () {
                 window.location.href="index.html";
             }
 
-            if (y >= 5 && y <= 20 ){
-                vtak.hudbaPoz = false;
-            }
 
         })
 
