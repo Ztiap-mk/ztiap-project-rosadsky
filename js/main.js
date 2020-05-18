@@ -13,17 +13,19 @@ window.onload = function () {
     c.height = 600; // Výška canvasu
 
 
-    let vyskaPrechodu = 180; //Priestor pre vtáka v px
+    let vyskaPrechodu = 300; //Priestor pre vtáka v px
 
     let SkoreKorunky= 0;
     let pomocnaScore= 0;
     let cas = 0;
+    let rychlost = 3;
 
     const ctx = c.getContext('2d');
     const prostredie = new Prostredie(c,ctx); //c, ctx
     const vtak = new Vtak(264,250,ctx); //x,y,ctx
     const budovy = [];
     const korunky = [];
+
 
     const gameovertext = document.getElementById('gameover');
     const gameovermenu = document.getElementById('gameovermenu');
@@ -86,15 +88,27 @@ window.onload = function () {
             ctx.fillText ( SkoreKorunky, 225, 180);
 
 
-
             if (detectCollision(vtak,budovy)) {
                 vtak.gameover = true;
             }
+
+
 
             if (detekciaKorunky(vtak,korunky)) {
                 if (pomocnaScore< 1){
                     SkoreKorunky++;
                     console.log(SkoreKorunky);
+
+                   if (rychlost<4 && SkoreKorunky>15){
+                       rychlost += 0.25;  // zrychlovanie pohyb budov
+                   }
+
+
+
+                    if(vyskaPrechodu>=200 && SkoreKorunky % 3 ===0){
+                        vyskaPrechodu -=25;
+                    }
+
                     pomocnaScore++;
                     if(vtak.hudbaPoz){
                         korunkaskore.play();
@@ -102,13 +116,14 @@ window.onload = function () {
                     cas = 0;
                 }
 
-
             } else  {
                 cas++;
-                if (cas%5===0){
+                if (cas%3===0){
                     pomocnaScore = 0;
                 }
             }
+
+
 
             if(vtak.hudbaPoz){
                 ctx.drawImage(zvukon,5,5,35,35);
@@ -119,6 +134,8 @@ window.onload = function () {
                 hudbaPozadie.pause();
                 ctx.drawImage(zvukoff,5,5,35,35);
             }
+
+
 
 
 
@@ -135,8 +152,8 @@ window.onload = function () {
         let dlzkaTop = Math.round(Math.random()*200+50); //náhodné číslo okolo 300 //HORNá budova // výška
                 let dlzaBottom = 600 - vyskaPrechodu - dlzkaTop;        //spodna budova hodnoty - generácoa
         let rBudova = { };
-        rBudova.top = new Budova(600, 0 , dlzkaTop, 3, ctx); // Generovanie vrchnej budovy
-        rBudova.bottom = new Budova(600, 600 - dlzaBottom, dlzaBottom, 3, ctx); // Generovanie spodnej budovy
+        rBudova.top = new Budova(600, 0 , dlzkaTop, rychlost, ctx); // Generovanie vrchnej budovy
+        rBudova.bottom = new Budova(600, 600 - dlzaBottom, dlzaBottom, rychlost, ctx); // Generovanie spodnej budovy
         return rBudova;
     }
 
@@ -144,7 +161,7 @@ window.onload = function () {
     function generovanieKoruniek(ctx) {
         let dlzkaTop = Math.round(Math.random()*333+150); //náhodné číslo okolo 300 //HORNá budova // výška
         let rKoruna = { };
-        rKoruna = new Koruna(780, dlzkaTop , 3, ctx); // Generovanie vrchnej budovy
+        rKoruna = new Koruna(780, dlzkaTop , rychlost, ctx); // Generovanie vrchnej budovy
         return rKoruna;
     }
 
@@ -165,6 +182,10 @@ window.onload = function () {
             }
             if (y>=375 && y<445 && x>150 && x<320){
                 window.location.href="index.html";
+            }
+
+            if (y >= 5 && y <= 20 ){
+                vtak.hudbaPoz = false;
             }
 
         })
