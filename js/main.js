@@ -200,9 +200,9 @@ window.onload = function () {
             let x0 = e.xpos, x1 = e.xpos + 100; // pipe lavý roh, pipe pravý roh
             if(highPipe){ //Vrchná pipe
                 let y0 = e.ypos + e.length+23; //vrch
-                let alpha = vtak.x; //pre kontrolu bokov
-                let beta = vtak.y - vtak.height/2; //pre kontrolu vrchu
-                if(alpha>x0 && alpha < x1 && beta < y0){
+                let a = vtak.x; //pre kontrolu bokov
+                let b = vtak.y - vtak.height/2; //pre kontrolu vrchu
+                if(a>x0 && a < x1 && b < y0){
                     return  true;
                 }
             }
@@ -227,14 +227,14 @@ window.onload = function () {
             let e = korunky[i];
             let x0 = e.xpos;
             let x1 = e.xpos+50;
-            let alpha  = vtak.x;
+            let a  = vtak.x;
             let y = e.ypos;
             let y1 = e.ypos+100;
-            let beta = vtak.y - vtak.height/2;
+            let b = vtak.y - vtak.height/2;
 
 
 
-            if( alpha > x0 && alpha < x1 && beta > y && beta < y1 ){
+            if( a > x0 && a< x1 && b > y && b < y1 ){
                     return true;
 
             } else {
