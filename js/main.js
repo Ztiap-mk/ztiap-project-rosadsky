@@ -1,8 +1,3 @@
-//
-// OTÁZKY : Problém smenu nejak zresetovať funciu ?
-//
-//
-
 
 window.onload = function () {
 
@@ -108,7 +103,7 @@ window.onload = function () {
 
 
                     if(vyskaPrechodu>=200 && SkoreKorunky % 3 ===0){
-                        vyskaPrechodu -=25;
+                        vyskaPrechodu -=25; //znižovanie prechodu
                     }
 
                     pomocnaScore++;
@@ -136,10 +131,6 @@ window.onload = function () {
                 hudbaPozadie.pause();
                 ctx.drawImage(zvukoff,5,5,35,35);
             }
-
-
-
-
 
             window.requestAnimationFrame(loopHry);
         }
@@ -186,9 +177,7 @@ window.onload = function () {
                 window.location.href="index.html";
             }
 
-
         })
-
 
     }
     

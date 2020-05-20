@@ -39,8 +39,6 @@ const Vtak = function (x,y,ctx) {
 
         }
 
-
-
         if(klavesa.keyCode === 88){
             if(stop.hudbaPoz){
                 stop.hudbaPoz= false;
