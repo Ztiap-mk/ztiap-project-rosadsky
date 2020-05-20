@@ -47,10 +47,7 @@ const Vtak = function (x,y,ctx) {
             }
         }
 
-
     });
-
-
 
 };
 
@@ -76,14 +73,11 @@ Vtak.prototype.update = function () {
 };
 
 Vtak.prototype.render = function () {
+
     let renderX = this.x - this.width;
     let renderY = this.y - this.height;
 
-
-
     this.ctx.drawImage(this.vtaky[this.vtakyIndex],renderX,renderY);
 
-
-
-}
+};
 
