@@ -85,11 +85,7 @@ window.onload = function () {
             ctx.fillText ( SkoreKorunky, 225, 180);
 
 
-            if (detectCollision(vtak,budovy)) {
-                vtak.gameover = true;
-            }
-
-
+            if (detectCollision(vtak,budovy)) { vtak.gameover = true; }
 
             if (detekciaKorunky(vtak,korunky)) {
                 if (pomocnaScore< 1){
@@ -170,12 +166,8 @@ window.onload = function () {
             var rect = canvas.getBoundingClientRect();
             let x = event.clientX-rect.left;
             let y = event.clientY - rect.top;
-            if (y>=300 && y<370 && x>150 && x<320){
-                window.location.href="menu.html";
-            }
-            if (y>=375 && y<445 && x>150 && x<320){
-                window.location.href="index.html";
-            }
+            if (y>=300 && y<370 && x>150 && x<320){ window.location.href="menu.html"; }
+            if (y>=375 && y<445 && x>150 && x<320){ window.location.href="index.html"; }
 
         })
 
@@ -191,6 +183,7 @@ window.onload = function () {
                 let y0 = e.ypos + e.length+23; //vrch
                 let a = vtak.x; //pre kontrolu bokov
                 let b = vtak.y - vtak.height/2; //pre kontrolu vrchu
+
                 if(a>x0 && a < x1 && b < y0){
                     return  true;
                 }
@@ -225,9 +218,6 @@ window.onload = function () {
 
             if( a > x0 && a< x1 && b > y && b < y1 ){
                     return true;
-
-            } else {
-               // console.log("else");
             }
         }
     }

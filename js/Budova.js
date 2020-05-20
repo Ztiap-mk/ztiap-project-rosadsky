@@ -16,19 +16,15 @@ const Budova = function (xpos,ypos,length,speed,ctx) {
 
 
 Budova.prototype.update = function () {
+
     this.xpos -= this.speed; //Pohyb "Budov"- fungovanie podobné ako pozadie
                             //rýchlosť posúvania sa zadávame pri volaní funkcie v main.js
 };
 
 Budova.prototype.render = function () {
 
-
         this.ctx.fillStyle = "green";
         this.ctx.drawImage(this.komin,this.xpos,this.ypos,100,this.length);
-        //this.ctx.fillRect(this.xpos,this.ypos,100,this.length); // 100 ->šírka // manuálne meniť hdnotu sems
-
-
-
         this.ctx.fillStyle = "green";
 
 };

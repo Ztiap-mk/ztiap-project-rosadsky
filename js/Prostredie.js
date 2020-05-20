@@ -1,6 +1,4 @@
 
-
-
 const Prostredie = function (c, ctx) {
     this.c = c;
     this.ctx = ctx;
@@ -9,12 +7,6 @@ const Prostredie = function (c, ctx) {
     this.pozWidth = 765;
     this.pozImg = document.getElementById('poz');
 };
-
-
-
-
-
-
 
 //-----------------------GENEROVANIE POZADIA ZA SEBOU ------------------------------//
 

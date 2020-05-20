@@ -9,7 +9,6 @@ const Vtak = function (x,y,ctx) {
     this.velY = 0;
     this.width= 61; //
     this.height = 48; // ROZMERY
-    //this.vtaky = document.getElementById('vtak1') //61x48
 
     this.vtaky = [document.getElementById('vtak1'),
         document.getElementById('vtak2'),
@@ -40,11 +39,7 @@ const Vtak = function (x,y,ctx) {
         }
 
         if(klavesa.keyCode === 88){
-            if(stop.hudbaPoz){
-                stop.hudbaPoz= false;
-            } else {
-                stop.hudbaPoz = true;
-            }
+            stop.hudbaPoz = !stop.hudbaPoz;
         }
 
     });
